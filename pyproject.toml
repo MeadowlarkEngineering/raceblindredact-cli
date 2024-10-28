@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "redact-cli"
+version = "0.0.0"
+description = "Command Line Tool for interfacing with RaceBlindRedact.Com"
+authors = ["Joshua Shapiro <jshapiro@meadowlarkengineering.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+  { include = "redact_cli", from = "src" }
+]
+
+[tool.poetry-dynamic-versioning]
+enable = true
+
+[tool.poetry-dynamic-versioning.files."package/_version.py"]
+persistent-substitution = true
+initial-content = """
+  # These version placeholders will be replaced later during substitution.
+  __version__ = "0.0.0"
+  __version_tuple__ = (0, 0, 0)
+"""
+
+[tool.poetry.scripts]
+redact = "redact_cli.redact:main"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.14"
+requests = "^2.32.3"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.3.1"
+pyinstaller = "^6.11.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
