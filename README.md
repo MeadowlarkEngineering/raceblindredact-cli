@@ -1,6 +1,6 @@
 # Redact CLI
 
-A Command Line Tool for redacting documents using RaceBlindRedact.com
+A Command Line Tool for redacting documents using [RaceBlindRedact.com]
 
 This tool is a self-contained executable written in python.  There are no external dependencies and no installation is required besides copying the executable to a permanent location.
 
@@ -30,7 +30,7 @@ If the token is not specified on the command line, and the environment variable 
 
 The `redact` command takes two mandatory arguments, an **input** file which must be a PDF, PNG, JPG, or TIFF document, and an **output** file, which will be where the output pdf document is saved. 
 
-For example. If the executable was saved in the users home directory, they can run the following command to redact the 
+For example. If the executable was saved in the users home directory, they can run the following command to redact the document `input.pdf`
 ```
 $HOME/redact d:\CaseMaterials\CaseNumber\input.pdf d:\CaseMaterials\CaseNumber\input-redacted.pdf
 ```
@@ -40,10 +40,11 @@ $HOME/redact d:\CaseMaterials\CaseNumber\input.pdf d:\CaseMaterials\CaseNumber\i
 The following command line options are available.
 
 - **--version** Display the version of the redact CLI tool
-- **--mode** Set the redaction mode. There are two modes. 
+- **--token <token>** Set the API token to use
+- **--mode {image,text}** Set the redaction mode. There are two modes. 
   - **text** In text mode, text is extracted and then redacted. The output document does not have the formatting of the input document. 
   - **image** In image mode, the original layout of the input is preserved in the output.  This is the *default* mode if not otherwise specified.
-- **-api-url** The URL of the redaction service.  This defaults to https://api.raceblindredact.com and should not be changed unless specifically instructed by support staff for troubleshooting purposes.
+- **-api-url <url>** The URL of the redaction service.  This defaults to https://api.raceblindredact.com and should not be changed unless specifically instructed by support staff for troubleshooting purposes.
 
 
 ### Errors
