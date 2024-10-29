@@ -1,6 +1,6 @@
 # Redact CLI
 
-A Command Line Tool for redacting documents using (RaceBlindRedact.com)
+A Command Line Tool for redacting documents using [RaceBlindRedact.com](https://api.raceblindredact.com)
 
 This tool is a self-contained executable written in python.  There are no external dependencies and no installation is required besides copying the executable to a permanent location.
 
