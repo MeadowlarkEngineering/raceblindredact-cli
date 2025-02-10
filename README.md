@@ -45,6 +45,8 @@ The following command line options are available.
   - **text** In text mode, text is extracted and then redacted. The output document does not have the formatting of the input document. 
   - **image** In image mode, the original layout of the input is preserved in the output.  This is the *default* mode if not otherwise specified.
 - **-api-url <url>** The URL of the redaction service.  This defaults to https://api.raceblindredact.com and should not be changed unless specifically instructed by support staff for troubleshooting purposes.
+- **--keep [term [...]]** One or more terms to keep (do not redact)
+- **--remove  [term [...]]** One or more terms to remove (always redact) 
 
 
 ### Errors
