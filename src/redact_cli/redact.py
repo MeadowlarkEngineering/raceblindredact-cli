@@ -52,7 +52,7 @@ def find_token() -> str:
     return token
 
 
-def redact(input_file: Path, output_file: Path, mode, token, api_url):
+def redact(input_file: Path, output_file: Path, mode, token, api_url, remove=None, keep=None):
     """
     Redact the input file and write the redacted text to the output file
     """
@@ -65,12 +65,24 @@ def redact(input_file: Path, output_file: Path, mode, token, api_url):
         files = {
             "file": (input_file.name, open(input_file, "rb"), guess_type(input_file.name)[0])
         }
+        data = [
+            ("mode", mode)
+        ]
+ 
+        if remove:
+            for r in remove:
+                data.append(("blacklist", r))
+
+        if keep:
+            for k in keep:
+                data.append(("whitelist", k))
+
         response = post(f"{api_url}/redact", 
                         headers = {
                             "Authorization": f"Bearer {token}",
                             "Accept": "application/pdf"},
                         files=files,
-                        data={"mode": mode}
+                        data=data
         )
         response.raise_for_status()
 
@@ -104,6 +116,8 @@ def main():
     )
     parser.add_argument("input", type=Path, help="Input file to redact")
     parser.add_argument("output", type=Path, help="Output file to write redacted text")
+    parser.add_argument("--remove", "-r", type=str, nargs="*", help="Terms to remove")
+    parser.add_argument("--keep", "-k", type=str, nargs="*", help="Terms to keep")
 
     args = parser.parse_args()
 
@@ -112,7 +126,7 @@ def main():
         print("API Token not found")
         return
 
-    redact(args.input, args.output, args.mode, token, args.api_url)
+    redact(args.input, args.output, args.mode, token, args.api_url, remove=args.remove, keep=args.keep)
 
 if __name__ == "__main__":
     main()
