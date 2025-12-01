@@ -25,7 +25,7 @@ redact = "redact_cli.redact:main"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.14"
-requests = "^2.32.3"
+requests = "^2.32.4"
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^3.3.1"
